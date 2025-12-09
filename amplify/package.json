@@ -1,3 +1,9 @@
 {
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@aws-amplify/backend-data": "^1.6.2"
+  },
+  "dependencies": {
+    "pg": "^8.16.3"
+  }
 }

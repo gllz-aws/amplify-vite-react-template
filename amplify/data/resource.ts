@@ -1,31 +1,52 @@
-import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+// import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
-const schema = a.schema({
-  Todo: a
-    .model({
-      content: a.string(),
-    })
-    .authorization((allow) => [allow.publicApiKey()]),
-});
+// const schema = a.schema({
+//   // Define your models here - these will map to PostgreSQL tables
+//   Todo: a
+//     .model({
+//       content: a.string(),
+//     })
+//     .authorization((allow) => [allow.publicApiKey()]),
+// });
 
-export type Schema = ClientSchema<typeof schema>;
+// export type Schema = ClientSchema<typeof schema>;
 
-export const data = defineData({
-  schema,
-  authorizationModes: {
-    defaultAuthorizationMode: "apiKey",
-    // API Key is used for a.allow.public() rules
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30,
-    },
-  },
-});
+// export const data = defineData({
+//   schema,
+//   authorizationModes: {
+//     defaultAuthorizationMode: "apiKey",
+//     // API Key is used for a.allow.public() rules
+//     apiKeyAuthorizationMode: {
+//       expiresInDays: 30,
+//     },
+//   },
+// });
+
+
+
+import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
+   import { schema as generatedSqlSchema } from './schema.sql';
+
+   // Add a global authorization rule
+   const sqlSchema = generatedSqlSchema.authorization(allow => allow.guest())
+
+   // Relational database sources can coexist with DynamoDB tables managed by Amplify
+   const schema = a.schema({
+     Todo: a.model({
+       content: a.string(),
+     }).authorization(allow => [allow.guest()])
+   });
+
+   // Use the a.combine() operator to stitch together the models
+   const combinedSchema = a.combine([schema, sqlSchema]);
+
+   // Update client types for both schemas
+   export type Schema = ClientSchema<typeof combinedSchema>;
+
+   export const data = defineData({
+     schema: combinedSchema
+   });
+
 
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a
