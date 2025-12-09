@@ -6,38 +6,38 @@ import { secret } from "@aws-amplify/backend";
 
 export const schema = configure({
     database: {
-        identifier: "IDY3j70jLZ88KHQJ7JGjGQQ",
+        identifier: "IDBIfBY9scaE4ZZ74DDhaw",
         engine: "postgresql",
         connectionUri: secret("SQL_CONNECTION_STRING"),
         vpcConfig: {
-            vpcId: "vpc-0db83e96d794d81b7",
+            vpcId: "vpc-0a548d6bf3d23cef7",
             securityGroupIds: [
-                "sg-0c09bee5da4d3cf88"
+                "sg-0d3eb631cb1f83d91"
             ],
             subnetAvailabilityZones: [
                 {
-                    subnetId: "subnet-0949d91f208a6c9ef",
-                    availabilityZone: "us-east-1b"
+                    subnetId: "subnet-087236adbd42b70df",
+                    availabilityZone: "us-east-1c"
                 },
                 {
-                    subnetId: "subnet-08a4a6d64b743004f",
-                    availabilityZone: "us-east-1f"
-                },
-                {
-                    subnetId: "subnet-03e00c60772268ddd",
-                    availabilityZone: "us-east-1e"
-                },
-                {
-                    subnetId: "subnet-04959daa6f22f497c",
+                    subnetId: "subnet-02ad2dd53591c2f61",
                     availabilityZone: "us-east-1a"
                 },
                 {
-                    subnetId: "subnet-0ab2678e011395b9d",
-                    availabilityZone: "us-east-1d"
+                    subnetId: "subnet-0c668111d064c3676",
+                    availabilityZone: "us-east-1b"
                 },
                 {
-                    subnetId: "subnet-081b5564204f97564",
-                    availabilityZone: "us-east-1c"
+                    subnetId: "subnet-0152ebf60a8ea9d27",
+                    availabilityZone: "us-east-1f"
+                },
+                {
+                    subnetId: "subnet-00773f132836a03bc",
+                    availabilityZone: "us-east-1e"
+                },
+                {
+                    subnetId: "subnet-07c78999c661ebb33",
+                    availabilityZone: "us-east-1d"
                 }
             ]
         }
