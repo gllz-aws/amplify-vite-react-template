@@ -1,7 +1,7 @@
 import { Client } from "pg";
 
 // Replace with your actual connection string
-const connectionString = process.env.SQL_CONNECTION_STRING || 'postgres://postgres:12345678@database-postgres.cpy4cq202gb9.us-east-1.rds.amazonaws.com:5432/database_test';
+const connectionString = process.env.SQL_CONNECTION_STRING || 'postgres://username_pg:12345678@database-1.c0z8sswoghme.us-east-1.rds.amazonaws.com:5432/database_pg';
 
 const client = new Client({
   connectionString,
